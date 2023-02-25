@@ -1,5 +1,6 @@
 import os
 import glob
+import numpy as np
 
 file_loc = os.path.join('data', 'outfiles', '*.out')
 
@@ -32,8 +33,28 @@ for f in file_names:
             words3 = tee_line.split()
             tee = float(words3[-1])
             TEenergies.write(F'{tee} \n')
-            print(tee)
 
 NRenergies.close()
 OEenergies.close()
 TEenergies.close()
+
+NRenergies_table = np.loadtxt("NRenergies.txt")
+
+print('NRenergies_table')
+for each in NRenergies_table:
+    print(each)
+print('\n')
+    
+OEenergies_table = np.loadtxt("OEenergies.txt")
+
+print('OEenergies_table')
+for each in OEenergies_table:
+    print(each)
+print('\n')
+
+TEenergies_table = np.loadtxt("TEenergies.txt")
+
+print('TEenergies_table')
+for each in TEenergies_table:
+    print(each)
+print('\n')
