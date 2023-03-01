@@ -1,6 +1,7 @@
 import os
 import glob
 import numpy as np
+import matplotlib.pyplot as plt
 
 file_loc = os.path.join('data', 'outfiles', '*.out')
 
@@ -38,23 +39,59 @@ NRenergies.close()
 OEenergies.close()
 TEenergies.close()
 
-NRenergies_table = np.loadtxt("NRenergies.txt")
+NRenergies_table = np.loadtxt('NRenergies.txt')
 
 print('NRenergies_table')
 for each in NRenergies_table:
     print(each)
 print('\n')
-    
-OEenergies_table = np.loadtxt("OEenergies.txt")
+
+OEenergies_table = np.loadtxt('OEenergies.txt')
 
 print('OEenergies_table')
 for each in OEenergies_table:
     print(each)
 print('\n')
 
-TEenergies_table = np.loadtxt("TEenergies.txt")
+TEenergies_table = np.loadtxt('TEenergies.txt')
 
 print('TEenergies_table')
 for each in TEenergies_table:
     print(each)
 print('\n')
+
+fig, axs = plt.subplots(3, figsize=(20,20))
+
+axs[0].plot(NRenergies_table, '--o')
+axs[0].set_title('Nuclear Repulsion Energy')
+plt.xlabel('Index')
+plt.ylabel('Energy')
+
+axs[1].plot(OEenergies_table, '--o')
+axs[1].set_title('One-Electron Energy')
+plt.xlabel('Index')
+plt.ylabel('Energy')
+
+axs[2].plot(TEenergies_table, '--o')
+axs[2].set_title('Two-Electron Energy')
+plt.xlabel('Index')
+plt.ylabel('Energy')
+
+plt.show()
+
+fig, axs = plt.subplots(figsize=(20,20))
+
+axs.plot(NRenergies_table, '--o')
+plt.xlabel('Index')
+plt.ylabel('Energy')
+
+axs.plot(OEenergies_table, '--o')
+plt.xlabel('Index')
+plt.ylabel('Energy')
+
+axs.plot(TEenergies_table, '--o')
+plt.xlabel('Index')
+plt.ylabel('Energy')
+
+plt.legend(['Nuclear Repulsion Energy', 'One-Electron Energy', 'Two-Electron Energy'], bbox_to_anchor = (0.75, 1.00), borderpad = 1, ncol = 3)
+plt.show()
