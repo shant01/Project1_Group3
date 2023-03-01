@@ -1,6 +1,7 @@
 import os
 import glob
 import numpy as np
+import matplotlib.pyplot as plt
 
 file_loc = os.path.join('data', 'outfiles', '*.out')
 
@@ -58,3 +59,27 @@ print('TEenergies_table')
 for each in TEenergies_table:
     print(each)
 print('\n')
+
+
+
+#create three subplots
+fig, axs = plt.subplots(3)
+
+# Plot NRenergies
+axs[0].plot(NRenergies_table)
+axs[0].set_title('Nuclear Repulsion Energy')
+
+# Plot OEnergies
+axs[1].plot(OEenergies_table)
+axs[1].set_title('One-electron Energy')
+
+# Plot TEnergies
+axs[2].plot(TEenergies_table)
+axs[2].set_title('Two-electron Energy')
+
+# Set common x and y labels for all subplots
+fig.text(0.5, 0.05, 'Index', ha='center')
+fig.text(0.05, 0.5, 'Energy', va='center', rotation='vertical')
+
+
+plt.show()
